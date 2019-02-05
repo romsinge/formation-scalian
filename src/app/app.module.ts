@@ -9,6 +9,9 @@ import { MaterialModule } from './modules/material/material.module';
 import { DistancePipe } from './pipes/distance.pipe';
 import { RaceComponent } from './components/race/race.component';
 import { IsRacingPipe } from './pipes/is-racing.pipe';
+import { HomeComponent } from './components/home/home.component';
+import { RouterModule } from '@angular/router';
+import { routes } from './app.routes';
 
 @NgModule({
   declarations: [
@@ -17,12 +20,14 @@ import { IsRacingPipe } from './pipes/is-racing.pipe';
     RainbowDirective,
     DistancePipe,
     RaceComponent,
-    IsRacingPipe
+    IsRacingPipe,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    MaterialModule
+    MaterialModule,
+    RouterModule.forRoot(routes)
   ],
   providers: [],
   bootstrap: [AppComponent]

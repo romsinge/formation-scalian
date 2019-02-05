@@ -1,6 +1,7 @@
-import { Component, OnInit, ViewChildren, Input } from '@angular/core';
+import { Component, OnInit, ViewChildren } from '@angular/core';
 import { Poney } from 'src/app/interfaces/poney';
 import { Race } from 'src/app/interfaces/race';
+import { DataService } from 'src/app/services/data.service';
 
 @Component({
   selector: 'sca-race',
@@ -8,30 +9,10 @@ import { Race } from 'src/app/interfaces/race';
   styleUrls: ['./race.component.scss']
 })
 export class RaceComponent implements OnInit {
-
-  ponies: Poney[] = [
-    {
-      "id": "0",
-      "name": "Romain",
-      "img": "http://ponyracer.ninja-squad.com/assets/images/pony-green-running.gif",
-      "distance": 0
-    },
-    {
-      "id": "1",
-      "name": "Michel",
-      "img": "http://ponyracer.ninja-squad.com/assets/images/pony-orange-running.gif",
-      "distance": 0
-    },
-    {
-      "id": "2",
-      "name": "Isabelle",
-      "img": "http://ponyracer.ninja-squad.com/assets/images/pony-purple-running.gif",
-      "distance": 0
-    }
-  ]
   
   @ViewChildren('poneyChildren') poneyChildren
-  @Input() race: Race
+  race: Race
+  ponies: Poney[]
 
   handleWin(poney: Poney) {
     console.log("WINNER : ", poney.name)
@@ -40,9 +21,10 @@ export class RaceComponent implements OnInit {
     })
   }
 
-  constructor() { }
+  constructor(private dataService: DataService) { }
 
   ngOnInit() {
+    this.ponies = this.dataService.ponies
   }
 
 }
