@@ -1,59 +1,36 @@
 import { Injectable } from '@angular/core';
 import { Race } from '../interfaces/race';
 import { Poney } from '../interfaces/poney';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators'
 
 @Injectable({
   providedIn: 'root'
 })
 export class DataService {
 
-  private _races: Race[] = [
-    {
-      "id": "0",
-      "name": "Tokyo",
-      "poneyIds": ["0", "1"]
-    },
-    {
-      "id": "1",
-      "name": "Madrid",
-      "poneyIds": ["1", "2"]
-    }
-  ]
+  private _races: Race[] = []
+  private _ponies: Poney[] = []
+  API_URL: string = 'http://localhost:3000'
 
-  private _ponies: Poney[] = [
-    {
-      "id": "0",
-      "name": "Romain",
-      "img": "http://ponyracer.ninja-squad.com/assets/images/pony-green-running.gif",
-      "distance": 0
-    },
-    {
-      "id": "1",
-      "name": "Michel",
-      "img": "http://ponyracer.ninja-squad.com/assets/images/pony-orange-running.gif",
-      "distance": 0
-    },
-    {
-      "id": "2",
-      "name": "Isabelle",
-      "img": "http://ponyracer.ninja-squad.com/assets/images/pony-purple-running.gif",
-      "distance": 0
-    }
-  ]
-
-  get ponies() {
-    return this._ponies
+  get ponies(): Observable<Poney[]> {
+    return this.http.get(`${this.API_URL}/ponies`)
+    .pipe(map(ponies => <Poney[]>ponies))
   }
 
-  get races() {
-    return this._races
+  get races(): Observable<Race[]> {
+    return this.http.get(`${this.API_URL}/races`)
+    .pipe(map(races => <Race[]>races))
   }
 
-  getRaceById(id: string): Race {
-    return this._races.find(race => {
-      return race.id === id
-    })
+  getRaceById(id: string): Observable<Race> {
+    return this.races.pipe(map(races => {
+      return races.find(race => {
+        return race.id === id
+      })
+    }))
   }
 
-  constructor() {}
+  constructor(private http: HttpClient) {}
 }

@@ -14,11 +14,5 @@ export class AppComponent {
     return new Date()
   }
 
-  races: Race[] = []
-
   constructor(private dataService: DataService) {}
-
-  ngOnInit() {
-    this.races = this.dataService.races
-  }
 }

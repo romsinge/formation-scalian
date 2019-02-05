@@ -3,6 +3,7 @@ import { Poney } from 'src/app/interfaces/poney';
 import { Race } from 'src/app/interfaces/race';
 import { DataService } from 'src/app/services/data.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'sca-race',
@@ -12,8 +13,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class RaceComponent implements OnInit {
   
   @ViewChildren('poneyChildren') poneyChildren
+  race$: Observable<Race>
   race: Race
-  ponies: Poney[]
+  ponies$: Observable<Poney[]>
 
   handleWin(poney: Poney) {
     console.log("WINNER : ", poney.name)
@@ -39,15 +41,19 @@ export class RaceComponent implements OnInit {
   ) {
     let id = this.route.snapshot.params.id
 
-    this.race = this.dataService.getRaceById(id)
-    
-    if (!this.race) {
-      this.router.navigateByUrl('')
-    }
+    this.race$ = this.dataService.getRaceById(id)
+
+    this.race$.subscribe((race) => {
+      this.race = race
+
+      if (!this.race) {
+        this.router.navigateByUrl('')
+      }
+    })
   }
 
   ngOnInit() {
-    this.ponies = this.dataService.ponies    
+    this.ponies$ = this.dataService.ponies    
   }
 
   ngOnDestroy(): void {
