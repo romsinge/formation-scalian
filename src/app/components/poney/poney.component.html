@@ -1,6 +1,7 @@
 <mat-card class="container" [style.left]="getDistancePercentage()">
   <img [src]="poney.img" />
   <strong>
-    {{ poney.name }}
+    {{ poney.name | uppercase }}
   </strong>
+  <p>{{ poney.distance | distance }}</p>
 </mat-card>

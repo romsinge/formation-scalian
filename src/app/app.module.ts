@@ -6,12 +6,14 @@ import { PoneyComponent } from './components/poney/poney.component';
 import { RainbowDirective } from './directives/rainbow.directive';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { MaterialModule } from './modules/material/material.module';
+import { DistancePipe } from './pipes/distance.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
     PoneyComponent,
-    RainbowDirective
+    RainbowDirective,
+    DistancePipe
   ],
   imports: [
     BrowserModule,
