@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChildren } from '@angular/core';
 import { Poney } from 'src/app/interfaces/poney';
 import { Race } from 'src/app/interfaces/race';
 import { DataService } from 'src/app/services/data.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'sca-race',
@@ -21,26 +21,33 @@ export class RaceComponent implements OnInit {
   }
 
   stopRace(reset: boolean = false) {
-    this.poneyChildren.forEach(poneyComponent => {
-      poneyComponent.stopRunning()
-      
-      if (reset) {
-        poneyComponent.poney.distance = 0
-      }
-    })
+    if(!!this.poneyChildren) {
+      this.poneyChildren.forEach(poneyComponent => {
+        poneyComponent.stopRunning()
+  
+        if (reset) {
+          poneyComponent.poney.distance = 0
+        }
+      })
+    }
   }
 
   constructor(
     private dataService: DataService,
-    private route: ActivatedRoute
-  ) { }
+    private route: ActivatedRoute,
+    private router: Router
+  ) {
+    let id = this.route.snapshot.params.id
+
+    this.race = this.dataService.getRaceById(id)
+    
+    if (!this.race) {
+      this.router.navigateByUrl('')
+    }
+  }
 
   ngOnInit() {
-    this.ponies = this.dataService.ponies
-
-    let id = this.route.snapshot.params.id
-    
-    this.race = this.dataService.getRaceById(id)
+    this.ponies = this.dataService.ponies    
   }
 
   ngOnDestroy(): void {
