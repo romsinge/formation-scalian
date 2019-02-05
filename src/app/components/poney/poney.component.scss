@@ -6,7 +6,11 @@
     position: relative;
     left: 0;
     transition: left 1s linear;
-  
+    
+    strong {
+      font-size: 15px;
+    }
+
     img {
       width: 100%;
     }
