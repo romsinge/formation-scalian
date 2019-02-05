@@ -1,0 +1,14 @@
+<h2>{{ race.name }}</h2>
+
+<sca-poney
+  (win)="handleWin($event)"
+  *ngFor="let poney of ponies | isRacing:race.poneyIds; let i = index"
+  [poney]="poney"
+  #poneyChildren
+  scaRainbow="#eee"
+  [isColored]="!(i%2)"
+></sca-poney>
+
+<pre>
+  {{ ponies | json }}
+</pre>

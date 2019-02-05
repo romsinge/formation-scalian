@@ -7,13 +7,17 @@ import { RainbowDirective } from './directives/rainbow.directive';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { MaterialModule } from './modules/material/material.module';
 import { DistancePipe } from './pipes/distance.pipe';
+import { RaceComponent } from './components/race/race.component';
+import { IsRacingPipe } from './pipes/is-racing.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
     PoneyComponent,
     RainbowDirective,
-    DistancePipe
+    DistancePipe,
+    RaceComponent,
+    IsRacingPipe
   ],
   imports: [
     BrowserModule,
