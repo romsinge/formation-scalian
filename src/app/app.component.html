@@ -7,9 +7,9 @@
 
 <sca-poney
   (win)="handleWin($event)"
-  *ngFor="let poney of ponies"
+  *ngFor="let poney of ponies; let i = index"
   [poney]="poney"
   #poneyChildren
-  scaRainbow
-  color="#eee"
+  scaRainbow="#eee"
+  [isColored]="!(i%2)"
 ></sca-poney>
