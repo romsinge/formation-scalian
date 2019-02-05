@@ -22,4 +22,8 @@ export class AppComponent {
       "poneyIds": ["1", "2"]
     }
   ]
+
+  getDate(): Date {
+    return new Date()
+  }
 }
