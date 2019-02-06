@@ -23,12 +23,50 @@
     {
       "id": "0",
       "name": "Tokyo",
-      "poneyIds": ["0", "1"]
+      "poneyIds": [
+        "0",
+        "1"
+      ]
     },
     {
       "id": "1",
       "name": "Madrid",
-      "poneyIds": ["1", "2"]
+      "poneyIds": [
+        "1",
+        "2"
+      ]
+    },
+    {
+      "name": "Paris",
+      "poneyIds": [
+        "0",
+        "1"
+      ],
+      "id": "daZt2W7"
+    },
+    {
+      "name": "Singapore",
+      "poneyIds": [
+        "1",
+        "2"
+      ],
+      "id": "5Fv1zfu"
+    },
+    {
+      "name": "Bangkok",
+      "poneyIds": [
+        "0",
+        "1"
+      ],
+      "id": "qiHznzg"
+    },
+    {
+      "name": "Le Mans",
+      "poneyIds": [
+        "0",
+        "2"
+      ],
+      "id": "pXuulN7"
     }
   ]
 }

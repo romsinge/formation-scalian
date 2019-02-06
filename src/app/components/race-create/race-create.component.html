@@ -7,13 +7,22 @@
   </mat-form-field> -->
 
   <mat-form-field>
-    <input matInput placeholder="Name" [(ngModel)]="name" name="name" />
+    <input
+      required
+      matInput
+      placeholder="Name"
+      [(ngModel)]="name"
+      name="name"
+      #nameInput="ngModel"
+    />
   </mat-form-field>
+
+  <mat-error *ngIf="nameInput.hasError('required') && nameInput.touched">Required field</mat-error>
 
   <br />
   
   <mat-form-field>
-    <mat-select placeholder="Ponies" multiple [(ngModel)]="poneyIds" name="poneyIds">
+    <mat-select minlength="2" #poneyIdsInput="ngModel" placeholder="Ponies" required multiple [(ngModel)]="poneyIds" name="poneyIds">
       <mat-option
         *ngFor="let poney of ponies$ | async"
         [value]="poney.id"
@@ -25,6 +34,6 @@
 
   <br />
 
-  <button mat-raised-button type="submit">Create</button>
+  <button [disabled]="nameInput.invalid || poneyIdsInput.invalid" mat-raised-button type="submit">Create</button>
 
 </form>

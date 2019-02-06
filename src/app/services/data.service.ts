@@ -53,5 +53,13 @@ export class DataService {
     }))
   }
 
+  createRace(race: Race): Observable<Race> {
+    return this.http.post(`${this.API_URL}/races`, race)
+      .pipe(map(response => {
+        this._races.push(<Race>response)
+        return <Race>response
+      }))
+  }
+
   constructor(private http: HttpClient) {}
 }
