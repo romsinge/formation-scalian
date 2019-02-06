@@ -4,6 +4,11 @@
 
   <mat-form-field>
     <input formControlName="name" matInput placeholder="Name">
+    <mat-error *ngFor="let errorMessage of errorMessages | keyvalue">
+      <span *ngIf="poneyForm.controls.name.hasError(errorMessage.key)">
+        {{ errorMessage.value }}
+      </span>
+    </mat-error>
   </mat-form-field>
 
   <mat-form-field>

@@ -1,4 +1,4 @@
-import { poneyImgValidator } from './../../utils/validators';
+import { poneyImgValidator, asyncPoneyName } from './../../utils/validators';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { DataService } from 'src/app/services/data.service';
@@ -15,7 +15,8 @@ export class PoneyCreateComponent implements OnInit {
 
   errorMessages = {
     required: 'Ce champ est requis',
-    poneyImg: 'Doit finir par .gif'
+    poneyImg: 'Doit finir par .gif',
+    asyncPoneyName: 'Ce poney existe déjà'
   }
 
   constructor(
@@ -28,6 +29,8 @@ export class PoneyCreateComponent implements OnInit {
     this.poneyForm = new FormGroup({
       name: new FormControl('', [
         Validators.required
+      ], [
+        asyncPoneyName(this.dataService)
       ]),
       img: new FormControl('', [
         Validators.required,
