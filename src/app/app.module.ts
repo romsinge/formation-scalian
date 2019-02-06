@@ -13,6 +13,8 @@ import { HomeComponent } from './components/home/home.component';
 import { RouterModule } from '@angular/router';
 import { routes } from './app.routes';
 import { HttpClientModule } from '@angular/common/http';
+import { RaceCreateComponent } from './components/race-create/race-create.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -22,14 +24,16 @@ import { HttpClientModule } from '@angular/common/http';
     DistancePipe,
     RaceComponent,
     IsRacingPipe,
-    HomeComponent
+    HomeComponent,
+    RaceCreateComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     MaterialModule,
     RouterModule.forRoot(routes),
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
