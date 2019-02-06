@@ -2,6 +2,7 @@ import { RaceCreateComponent } from './components/race-create/race-create.compon
 import { HomeComponent } from './components/home/home.component';
 import { Routes } from '@angular/router'
 import { RaceComponent } from './components/race/race.component';
+import { PoneyCreateComponent } from './components/poney-create/poney-create.component';
 
 export const routes: Routes = [
   {
@@ -15,6 +16,10 @@ export const routes: Routes = [
   {
     path: 'race-create',
     component: RaceCreateComponent
+  },
+  {
+    path: 'poney-create',
+    component: PoneyCreateComponent
   },
   {
     path: '**',
