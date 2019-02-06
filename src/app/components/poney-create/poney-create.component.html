@@ -8,9 +8,9 @@
 
   <mat-form-field>
     <input formControlName="img" matInput placeholder="Image">
-    <mat-error *ngFor="let errorMessage of errorMessages">
-      <span *ngIf="poneyForm.controls.img.hasError(errorMessage.name)">
-        {{ errorMessage.message }}
+    <mat-error *ngFor="let errorMessage of errorMessages | keyvalue">
+      <span *ngIf="poneyForm.controls.img.hasError(errorMessage.key)">
+        {{ errorMessage.value }}
       </span>
     </mat-error>
   </mat-form-field>
